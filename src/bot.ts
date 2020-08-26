@@ -1,28 +1,12 @@
-// import Discord from 'discord.js'
-// import dotenv from 'dotenv'
-
-// dotenv.config()
-
-// const client = new Discord.Client()
-
-// client.on('ready', () => {
-// 	console.log(`Logged in as ${client.user?.tag}!`)
-// 	// console.log('')
-// })
-
-// client.on('message', async msg => {
-// 	console.log({ msg: msg.toJSON() })
-// 	if (msg.content.match(/hi/)) {
-// 		const msg1 = await msg.reply(`Hi ${msg.author.username}, What's up!!!`)
-// 		console.log(msg1)
-// 	}
-// })
-
-// client.login(process.env.DISCORD_TOKEN)
-
+import { Client, WebhookClient } from 'discord.js'
+import express from 'express'
 require('dotenv').config()
 
-import { Client, WebhookClient } from 'discord.js'
+const app = express()
+
+app.listen(Number(process.env.PORT) || 3000, () => {
+	console.log(`Listening at PORT ${process.env.PORT}`)
+})
 
 const client = new Client({
 	partials: ['MESSAGE', 'REACTION'],
@@ -63,7 +47,10 @@ client.on('message', async message => {
 				member
 					.kick()
 					.then(member => message.channel.send(`${member} was kicked.`))
-					.catch(err => message.channel.send('I cannot kick that user :('))
+					.catch(err => {
+						console.log(err)
+						message.channel.send('I cannot kick that user :(')
+					})
 			} else {
 				message.channel.send('That member was not found')
 			}
