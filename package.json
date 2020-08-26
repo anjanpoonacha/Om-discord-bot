@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "bot.js",
 	"scripts": {
+		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "tsc && node ./lib/bot.js",
+		"start": "npm run build && node ./lib/bot.js",
 		"dev": "nodemon ./lib/bot.js",
 		"tscInit": "tsc --init",
 		"tsc": "tsc -w"
