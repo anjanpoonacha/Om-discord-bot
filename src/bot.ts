@@ -25,14 +25,17 @@ client.on('ready', () => {
 
 client.on('message', async message => {
 	if (message.author.bot) return
+
 	if (
-		message.content.match(/(^hi|^hello|^hey)/i) &&
-		message.channel.type === 'dm'
+		(client.user && message.mentions.has(client.user)) ||
+		(message.content.match(/(^hi|^hello|^hey)/i) &&
+			message.channel.type === 'dm')
 	) {
 		message.reply(`Hi ${message.author.username}, What's up!!!`).catch(err => {
 			message.reply(`Sorry!! :( Something went wrong. Please try again!!`)
 		})
 	}
+
 	if (message.content.startsWith(PREFIX)) {
 		const [CMD_NAME, ...args] = message.content
 			.trim()
