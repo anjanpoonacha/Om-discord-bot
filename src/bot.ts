@@ -4,6 +4,11 @@ require('dotenv').config()
 
 const app = express()
 
+app.get('/', (req, res) => {
+	console.log('Keeping Server alive!!')
+	res.status(200).json({ message: 'Hello' })
+})
+
 app.listen(Number(process.env.PORT) || 3000, () => {
 	console.log(`Listening at PORT ${process.env.PORT}`)
 })
