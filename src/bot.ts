@@ -46,7 +46,7 @@ client.on('message', async message => {
 		message.channel.type === 'dm'
 	) {
 		message.reply(`Hi ${message.author.username}, What's up!!!`).catch(err => {
-			message.reply(`Sorry!! :( Something went wrong. Please try again`)
+			message.reply(`Sorry!! :( Something went wrong. Please try again!!`)
 		})
 	}
 	if (message.content.startsWith(PREFIX)) {
